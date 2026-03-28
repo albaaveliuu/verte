@@ -1,6 +1,6 @@
 /**
  * UI copy — EN + Albanian (locale code `sq`).
- * Menu dish text stays verbatim in Menu.jsx (house PDF).
+ * Menu dish lines: English in Menu.jsx; Albanian descriptions in `bodySq`.
  */
 
 export const translations = {
@@ -26,9 +26,9 @@ export const translations = {
         'A place for good food, great coffee, and quiet moments. Simple ingredients, careful preparation, and a calm space to slow down.',
       welcome: 'Welcome',
       atmosphere: 'Atmosphere',
-      mood1: 'Lento',
-      mood2: 'Semplice',
-      mood3: 'Qui',
+      mood1: 'Taste',
+      mood2: 'Fresh',
+      mood3: 'Soul',
       cta: 'Get in touch',
     },
     gallery: {
@@ -74,9 +74,9 @@ export const translations = {
         'Një vend për ushqim të mirë, kafe të shkëlqyer dhe momente qetësie. Përbërës të thjeshtë, përgatitje me kujdes dhe një hapësirë të qetë për të ndalur.',
       welcome: 'Mirë se vini',
       atmosphere: 'Atmosferë',
-      mood1: 'Ngadalë',
-      mood2: 'Thjeshtë',
-      mood3: 'Këtu',
+      mood1: 'Shije',
+      mood2: 'Freski',
+      mood3: 'Shpirt',
       cta: 'Na kontaktoni',
     },
     gallery: {
