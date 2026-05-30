@@ -2,105 +2,102 @@ import { useLanguage } from '../i18n/LanguageContext'
 import { useVisible } from '../hooks/useVisible'
 import './Menu.css'
 
-/**
- * `body` — English / house menu wording.
- * `bodySq` — Albanian: dish names kept, English description lines translated.
- */
-const CATEGORIES = [
+/** From SAMPLEE02.pdf — verbatim dish names, ingredients, and prices */
+const DAY_CATEGORIES = [
   {
-    id: 'mengjesi',
-    title: 'MËNGJESI',
+    id: 'breakfast',
+    title: 'BREAKFAST',
     items: [
       {
-        body: `SUPË SEZONALE – Seasonal
-homemade soup prepared
-with fresh ingredients`,
-        bodySq: `SUPË SEZONALE – Sezonale
-supë e përgatitur në shtëpi
-me përbërës të freskët`,
-        price: '2.00',
+        body: `VERTE SUNRISE
+OMLET ME DOMATE TË THARA NË DIELL, SPINAQ, DJATH, KARROTË, ULLINJË.`,
+        price: '4.30',
       },
       {
-        body: `BREAKFAST VERTE –
-Homemade Omelette with
-fresh herbs and vegetables`,
-        bodySq: `BREAKFAST VERTE –
-Omletë e përgatitur në shtëpi me
-barishte dhe perime të freskëta`,
-        price: '4.20',
-      },
-      {
-        body: 'CLASSIC BREAKFAST – Sunnyside-up eggs served fresh',
-        bodySq: 'CLASSIC BREAKFAST – Vezë me diell, të servuara të freskëta',
-        price: '3.20',
-      },
-    ],
-  },
-  {
-    id: 'burgers',
-    title: 'BURGERS',
-    items: [
-      {
-        body: `BURGER VERTE – Signature
-house burger with special
-sauce`,
-        bodySq: `BURGER VERTE – Burger
-i shtëpisë me salcë
-të veçantë`,
-        price: '4.20',
-      },
-      {
-        body: `CHICKEN BURGER – Crispy
-grilled chicken burger`,
-        bodySq: `CHICKEN BURGER – Burger
-me pulë të pjekur, i krokant`,
+        body: `FARMHOUSE MORNING
+VEZË TË SKUQURA NË SY DHE KËPURDHA`,
         price: '4.20',
       },
     ],
   },
   {
-    id: 'sallata',
-    title: 'SALLATA',
+    id: 'salads',
+    title: 'SALADS',
     items: [
       {
-        body: `SALLATË CEASAR – Fresh salad
-with grilled chicken`,
-        bodySq: `SALLATË CEASAR – Sallatë e freskët
-me pulë të pjekur`,
+        body: `OCEAN BOWL
+SALLATË E GJELBËR , RUKOLLË, TUNA, QEPË, MOZARELLA`,
+        price: '6.40',
+      },
+      {
+        body: `VERTE SALAD
+MISH PULË, DOMATINI, RUKOLA, SALLATË TË GJELBËR, KUBËZA DJATHI, PARMEZAN`,
+        price: '6.40',
+      },
+    ],
+  },
+  {
+    id: 'burgers-sandwiches',
+    title: 'BURGERS AND SANDWICHES',
+    items: [
+      {
+        body: `GOLDEN CRUNCH BURGER
+MISH VIQI, KAQKAVALL, PROSHUTË, SALCË, QEPË TË FËRGUARA, PATATE`,
+        price: '5.50',
+      },
+      {
+        body: `BURGER
+MISH PULE CRUNCH, KAQKAVALL, SALCË, PATATE`,
+        price: '5.30',
+      },
+      {
+        body: `RUSTICO PROSCIUTTO
+PROSHUTË E THATË VIQI, KAQKAVALL, SALCË, SALLATË GJELBËRT, PATATE`,
         price: '4.50',
       },
       {
-        body: `SALLATË TUNA – Tuna salad
-with vegetables`,
-        bodySq: `SALLATË TUNA – Sallatë tunë
-me perime`,
-        price: '4.50',
+        body: `BEEF SANDWICH
+MISH VIQI, KËPURDHA TË FËRGUARA, SALCË, KAQKAVALL, PATATE`,
+        price: '4.90',
+      },
+      {
+        body: `CHICKEN SANDWICH
+MISH PULE CRUNCH, SALCË, SPEC I GJELBËRT, PATATE`,
+        price: '4.60',
+      },
+      {
+        body: `VEGGIE SANDWICH
+DOMATE TE THATA,SALLATE,SPEC I GJELBERT,DJATH,PARMEZAN.`,
+        price: '4.20',
       },
     ],
   },
+]
+
+const NIGHT_CATEGORIES = [
   {
-    id: 'burrito',
-    title: 'BURRITO',
+    id: 'risotto',
+    title: 'RISSOTO',
     items: [
       {
-        body: `CHICKEN BURRITO – Filled
-tortilla with chicken, rice, and
-fresh toppings`,
-        bodySq: `CHICKEN BURRITO – Tortilla e mbushur
-me pulë, oriz dhe
-shtesa të freskëta`,
-        price: '4.20',
+        body: `BEEF RISSOTO
+MISH VIQI, KUNGULLESH, KËPURDHA, KARROTË, SPEC, QEPË E KUQE, PARMEZAN`,
+        price: '5.90',
       },
       {
-        body: `CHICKEN CRUNCH WRAP –
-Filled wrapwith chicken
-crunch, rice, and fresh
-toppings`,
-        bodySq: `CHICKEN CRUNCH WRAP –
-Wrap i mbushur me pulë
-krokante, oriz dhe shtesa
-të freskëta`,
-        price: '4.20',
+        body: `SHRIMP RISSOTO
+KARKALEC, MAGDANOZ TË FRESKËT, HUDHËR, LIMON`,
+        price: '6.00',
+      },
+      {
+        body: `CHICKEN RISSOTO
+MISH PULE, KARROTË, KËPURDHA QEPË TË KUQE, PARMEZAN`,
+        price: '5.30',
+      },
+      {
+        body: `GARDEN HARVEST RISOTTO
+KËPURDHA, KUNGULLESHË, KARROTË, SPEC TË KUQ, SPEC TË GJELBËR, QEPË TE KUQE, PARMEZAN`,
+        price: '5.90',
       },
     ],
   },
@@ -109,198 +106,82 @@ të freskëta`,
     title: 'PASTA',
     items: [
       {
-        body: `PASTA CARBONARA – Creamy
-pasta with bacon and
-parmesan`,
-        bodySq: `PASTA CARBONARA – Makarona kremoze
-me mish të pjekur dhe
-parmigiano`,
-        price: '4.80',
+        body: `PASTA CARBONARA
+PROSHUTË E TYMOSUR, SALCË PANA,PARMEZAN`,
+        price: '6.20',
       },
       {
-        body: `PASTA PULË PESTO – Chicken
-pasta with basil pesto sauce`,
-        bodySq: `PASTA PULË PESTO – Makarona me pulë
-dhe salcë pesto basile`,
-        price: '4.80',
+        body: `PASTA ARRABIATA
+SALCE DOMATESH,SALCE PIKANTE`,
+        price: '5.80',
       },
       {
-        body: `PASTA ARRABIATA – Spicy
-tomato sauce pasta`,
-        bodySq: `PASTA ARRABIATA – Makarona me salcë
-domatesh të pikantme`,
-        price: '4.20',
+        body: `PASTA CHICKEN PESTO
+MISH PULE,PESTO,SALCE PANA,PARMEZAN`,
+        price: '6.20',
       },
       {
-        body: `PASTA BOLOGNESE – Pasta
-with slow-cooked meat sauce`,
-        bodySq: `PASTA BOLOGNESE – Makarona me salcë
-mishi të gatuar ngadalë`,
-        price: '4.80',
+        body: `PASTA BOLOGNESE
+MISH VIQI, SALCË DOMATESH, PARMEZAN`,
+        price: '6.70',
       },
       {
-        body: `PASTA VERTE – House special
-pasta with green sauce`,
-        bodySq: `PASTA VERTE – Makarona speciale
-e shtëpisë me salcë të gjelbër`,
-        price: '4.90',
-      },
-    ],
-  },
-  {
-    id: 'rizoto',
-    title: 'RIZOTO',
-    items: [
-      {
-        body: `RIZOTO ME PULË – Creamy
-risotto with chicken`,
-        bodySq: `RIZOTO ME PULË – Rizoto kremoz
-me pulë`,
-        price: '4.80',
+        body: `QUATTRO TESORI
+PARMEZAN,GORGONZOLA,PROVOLONE,FONTINA`,
+        price: '7.90',
       },
       {
-        body: `RIZOTO VEGJETARIANE –
-Vegetable risotto with seasonal
-produce`,
-        bodySq: `RIZOTO VEGJETARIANE –
-Rizoto me perime
-sezonale`,
-        price: '4.20',
-      },
-      {
-        body: `RIZOTO ME MISH VIÇI –
-Risotto with tender beef`,
-        bodySq: `RIZOTO ME MISH VIÇI –
-Rizoto me mish viçi të butë`,
+        body: `LEMON FARFELLE DI VERTE
+LEMON,KARROTE,PARMEZAN,MAGDANOZ TE FRESKET,ROZMARINE`,
         price: '5.90',
       },
     ],
   },
   {
-    id: 'sandwiches',
-    title: 'SANDWICHES',
+    id: 'night-bites',
+    title: 'NIGHT BITES',
     items: [
       {
-        body: `SANDUIÇ ME PROSHUTË –
-Sandwich with cured ham and
-fresh ingredients`,
-        bodySq: `SANDUIÇ ME PROSHUTË –
-Sanduiç me proshutë dhe
-përbërës të freskët`,
-        price: '3.50',
-      },
-      {
-        body: `SANDUIÇ ME PULË – Grilled
-chicken sandwich with
-signature sauce`,
-        bodySq: `SANDUIÇ ME PULË – Sanduiç me pulë
-të pjekur dhe salcë
-të veçantë`,
-        price: '3.50',
-      },
-      {
-        body: `SANDUIÇ CRUNCH – Crispy
-sandwich with crunchy
-textures`,
-        bodySq: `SANDUIÇ CRUNCH – Sanduiç i krokant
-me tekstura të ndryshme`,
-        price: '3.70',
-      },
-      {
-        body: `SANDUIÇ VEGAN – Plantbased sandwich with fresh
-vegetables`,
-        bodySq: `SANDUIÇ VEGAN – Sanduiç bimësh me
-perime të freskëta`,
-        price: '3.20',
-      },
-      {
-        body: `TOST VERTE -(VERTE TOAST)
-– Toast with avocado and
-green mix`,
-        bodySq: `TOST VERTE -(VERTE TOAST)
-– Tost me avokado dhe
-përzierje të gjelbër`,
-        price: '3.80',
+        body: `FINGERS, KËPURDHA, DJATH I FËRGUAR, SALCË`,
+        price: '7.90',
       },
     ],
   },
   {
-    id: 'desserts',
-    title: 'DESSERTS',
+    id: 'grandmas-sweet-finish',
+    title: "GRANDMA'S SWEET FINISH",
     items: [
       {
-        body: 'CHEESECAKE ME FRUTA MALI – Cheesecake with forest fruits',
-        bodySq: 'CHEESECAKE ME FRUTA MALI – Cheesecake me fruta pylli',
+        body: "GRANDMA'S SWEET FINISH",
         price: '3.00',
-      },
-      {
-        body: 'TIRAMISU KLASIKE – Traditional Italian tiramisu',
-        bodySq: 'TIRAMISU KLASIKE – Tiramisu tradicional italiane',
-        price: '3.00',
-      },
-      {
-        body: 'LOTUS CAKE – Lotus biscuit cream cake',
-        bodySq: 'LOTUS CAKE – Tortë kreme me biskota Lotus',
-        price: '3.00',
-      },
-    ],
-  },
-  {
-    id: 'finger',
-    title: 'FINGER FOOD',
-    items: [
-      {
-        body: `FINGERS PULE – Crispy chicken
-strips`,
-        bodySq: `FINGERS PULE – Shirita pule
-të krokantë`,
-        price: '5.50',
-      },
-      {
-        body: `BRUSKETA KLASIKE – Toasted
-bread with tomato and herbs`,
-        bodySq: `BRUSKETA KLASIKE – Bukë e pjekur
-me domate dhe barishte`,
-        price: '3.50',
-      },
-      {
-        body: `PATATE TË SKUQURA – Golden
-fried potatoes`,
-        bodySq: `PATATE TË SKUQURA – Patate të skuqura
-të arta`,
-        price: '3.00',
-      },
-    ],
-  },
-  {
-    id: 'mezze',
-    title: 'MEZZE',
-    items: [
-      {
-        body: `MEZZE E FTOHTË – Selection of
-cold appetizers`,
-        bodySq: `MEZZE E FTOHTË – Përzgjedhje parapjesh
-të ftohta`,
-        price: '10.00',
-      },
-      {
-        body: `MEZZE E NGROHTË – Selection of
-warm appetizers`,
-        bodySq: `MEZZE E NGROHTË – Përzgjedhje parapjesh
-të ngrohta`,
-        price: '14.00',
       },
     ],
   },
 ]
 
+function MenuCategory({ category }) {
+  return (
+    <section className="menu-category">
+      <h2 className="menu-category__title">{category.title}</h2>
+      <div className="menu-category__line" aria-hidden="true" />
+      <ul className="menu-category__list">
+        {category.items.map((item, index) => (
+          <li key={`${category.id}-${index}`} className="menu-card">
+            <div className="menu-card__text">
+              <p className="menu-card__body">{item.body}</p>
+            </div>
+            <span className="menu-card__price">€{item.price}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export default function Menu() {
-  const { t, locale } = useLanguage()
+  const { t } = useLanguage()
   const [refTitle, titleVisible] = useVisible(0.2)
   const [refMenu, menuVisible] = useVisible(0.1)
-
-  const dishBody = (item) =>
-    locale === 'sq' && item.bodySq ? item.bodySq : item.body
 
   return (
     <div className="menu-page">
@@ -314,21 +195,8 @@ export default function Menu() {
       </section>
 
       <div ref={refMenu} className={`menu-board ${menuVisible ? 'visible' : ''}`}>
-        {CATEGORIES.map((category) => (
-          <section key={category.id} className="menu-category">
-            <h2 className="menu-category__title">{category.title}</h2>
-            <div className="menu-category__line" aria-hidden="true" />
-            <ul className="menu-category__list">
-              {category.items.map((item, index) => (
-                <li key={`${category.id}-${index}`} className="menu-card">
-                  <div className="menu-card__text">
-                    <p className="menu-card__body">{dishBody(item)}</p>
-                  </div>
-                  <span className="menu-card__price">€{item.price}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+        {DAY_CATEGORIES.map((category) => (
+          <MenuCategory key={category.id} category={category} />
         ))}
 
         <footer className="menu-night">
@@ -336,6 +204,10 @@ export default function Menu() {
           <p className="menu-night__label">{t('menu.nightLabel')}</p>
           <p className="menu-night__time">{t('menu.nightHours')}</p>
         </footer>
+
+        {NIGHT_CATEGORIES.map((category) => (
+          <MenuCategory key={category.id} category={category} />
+        ))}
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 /**
  * UI copy — EN + Albanian (locale code `sq`).
- * Menu dish lines: English in Menu.jsx; Albanian descriptions in `bodySq`.
+ * Menu dish lines: verbatim from house PDF in Menu.jsx.
  */
 
 export const translations = {
