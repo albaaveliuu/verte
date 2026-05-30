@@ -160,9 +160,14 @@ LEMON,KARROTE,PARMEZAN,MAGDANOZ TE FRESKET,ROZMARINE`,
 ]
 
 function MenuCategory({ category }) {
+  const { t } = useLanguage()
+
   return (
     <section className="menu-category">
       <h2 className="menu-category__title">{category.title}</h2>
+      {category.id === 'breakfast' ? (
+        <p className="menu-category__note">{t('menu.breakfastUntil')}</p>
+      ) : null}
       <div className="menu-category__line" aria-hidden="true" />
       <ul className="menu-category__list">
         {category.items.map((item, index) => (
@@ -188,10 +193,6 @@ export default function Menu() {
       <section ref={refTitle} className={`menu-header ${titleVisible ? 'visible' : ''}`}>
         <h1 className="menu-header__title">{t('menu.title')}</h1>
         <div className={`section-line ${titleVisible ? 'visible' : ''}`} />
-        <div className="menu-header__hours">
-          <p className="menu-header__hours-line">{t('menu.openEveryday')}</p>
-          <p className="menu-header__hours-time">{t('menu.dayHours')}</p>
-        </div>
       </section>
 
       <div ref={refMenu} className={`menu-board ${menuVisible ? 'visible' : ''}`}>
@@ -202,7 +203,6 @@ export default function Menu() {
         <footer className="menu-night">
           <div className="menu-night__line" aria-hidden="true" />
           <p className="menu-night__label">{t('menu.nightLabel')}</p>
-          <p className="menu-night__time">{t('menu.nightHours')}</p>
         </footer>
 
         {NIGHT_CATEGORIES.map((category) => (

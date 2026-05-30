@@ -38,18 +38,13 @@ export const translations = {
     },
     menu: {
       title: 'Menu',
-      openEveryday: 'OPEN EVERYDAY',
-      dayHours: '07:00AM – 08:00PM',
+      breakfastUntil: 'Until 11:30',
       nightLabel: 'NIGHT MENU',
-      nightHours: '08:00PM – 12:00 AM',
     },
     contact: {
       title: 'Contact',
       addressLabel: 'Address',
-      hoursLabel: 'Hours',
       emailLabel: 'Email',
-      openEveryday: 'OPEN EVERYDAY',
-      hoursTime: '07:00AM – 08:00PM',
     },
   },
   sq: {
@@ -86,18 +81,13 @@ export const translations = {
     },
     menu: {
       title: 'Menu',
-      openEveryday: 'I HAPUR ÇDO DITË',
-      dayHours: '07:00AM – 08:00PM',
+      breakfastUntil: 'Deri në 11:30',
       nightLabel: 'MENU E NATËS',
-      nightHours: '08:00PM – 12:00 AM',
     },
     contact: {
       title: 'Kontakt',
       addressLabel: 'Adresa',
-      hoursLabel: 'Orari',
       emailLabel: 'Email',
-      openEveryday: 'I HAPUR ÇDO DITË',
-      hoursTime: '07:00AM – 08:00PM',
     },
   },
 }

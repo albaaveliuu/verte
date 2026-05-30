@@ -25,15 +25,6 @@ export default function Contact() {
         </div>
         <div className="contact-block">
           <div className={`contact-block__line line-expand ${contentVisible ? 'visible' : ''}`} />
-          <h3 className="contact-block__label">{t('contact.hoursLabel')}</h3>
-          <p className="contact-block__text">
-            {t('contact.openEveryday')}
-            <br />
-            {t('contact.hoursTime')}
-          </p>
-        </div>
-        <div className="contact-block">
-          <div className={`contact-block__line line-expand ${contentVisible ? 'visible' : ''}`} />
           <h3 className="contact-block__label">{t('contact.emailLabel')}</h3>
           <p className="contact-block__text">
             <a href="mailto:vertepristine@gmail.com" className="contact-link line-underline">

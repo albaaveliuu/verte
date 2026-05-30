@@ -93,6 +93,15 @@
   color: var(--navy);
 }
 
+.menu-category__note {
+  margin: 0.35rem 0 0;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--navy-mid);
+}
+
 .menu-category__line {
   height: 2px;
   width: 100%;
